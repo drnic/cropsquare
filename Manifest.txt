@@ -1,11 +1,12 @@
 History.txt
 Manifest.txt
-PostInstall.txt
 README.rdoc
 Rakefile
 lib/crop_square.rb
 script/console
 script/destroy
 script/generate
+test/fixtures/model.jpg
+test/fixtures/model.png
 test/test_crop_square.rb
 test/test_helper.rb

@@ -30,7 +30,7 @@ class CropSquare
       while (x = x_count * options[:size]) < width
         while (y = y_count * options[:size]) < height
           cropped = img.crop(x, y, options[:size], options[:size])
-          cropped.write(File.join(@output_directory, "#{"%02d" % x_count}-#{"%02d" % y_count}-#{resolution}#{File.extname(file)}"))
+          cropped.write(File.join(@output_directory, "#{resolution}-#{"%02d" % x_count}-#{"%02d" % y_count}#{File.extname(file)}"))
           y_count += 1
         end
         x_count += 1

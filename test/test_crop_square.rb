@@ -12,9 +12,9 @@ class TestCropSquare < Test::Unit::TestCase
     end
 
     should "name its files XX-YY.png" do
-      assert_equal(1, Dir[File.join(output_dir, "12-09-4.png")].length)
-      assert_equal(1, Dir[File.join(output_dir, "09-09-4.png")].length)
-      assert_equal(1, Dir[File.join(output_dir, "00-00-4.png")].length)    
+      assert_equal(1, Dir[File.join(output_dir, "12-09-1.png")].length)
+      assert_equal(1, Dir[File.join(output_dir, "09-09-1.png")].length)
+      assert_equal(1, Dir[File.join(output_dir, "00-00-1.png")].length)    
     end
     
     should "have 13x10 files generated" do
@@ -27,7 +27,7 @@ class TestCropSquare < Test::Unit::TestCase
       @file = File.expand_path(File.join(File.dirname(__FILE__), "fixtures", "model.png"))
       @output_dir = File.expand_path(File.join(File.dirname(__FILE__), "output"))
       FileUtils.rm_rf(output_dir)
-      CropSquare.by_resolution(file, output_dir, { :resolution => 4, :size => 128 })
+      CropSquare.by_resolution(file, output_dir, 4, { :size => 128 })
     end
 
     should "name its files XX-YY-LL.png" do
@@ -37,7 +37,6 @@ class TestCropSquare < Test::Unit::TestCase
     end
     
     should "have 3x13x10 files generated" do
-      puts "HERE"
       assert_equal((Dir.entries(output_dir) - ['.', '..']).size, 3 * 13 * 10)
     end
   end

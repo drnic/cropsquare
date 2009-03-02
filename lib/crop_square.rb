@@ -10,20 +10,21 @@ class CropSquare
     options[:size] ||= 128
     @output_directory = output_directory
     FileUtils.mkdir_p(@output_directory)
-    choppy_choppy(file, nil, options)
+    choppy_choppy(file, options)
   end
   
   def self.by_resolution(file, output_directory, resolution, options = {})
-    original_image = Image.read(file).first
     self.new(file, output_directory, options.merge({:resolution => resolution}))
   end
   
-  def choppy_choppy(file, img = nil, options = {})
-    resolution = options[:resolution] || 1
-    img ||= Image.read(file).first
-    width = img.columns
-    height = img.rows
+  def choppy_choppy(file, options = {})
+    resolution = (options[:resolution] ||= 1)
     while resolution >= 1
+      raw_image ||= Image.read(file).first
+      scale = resolution * 1.0 / options[:resolution]
+      img = raw_image.thumbnail(scale)
+      width = img.columns
+      height = img.rows
       x_count = 0
       y_count = 0
       while (x = x_count * options[:size]) < width

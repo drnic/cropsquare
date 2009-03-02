@@ -32,12 +32,15 @@ class TestCropSquare < Test::Unit::TestCase
 
     should "name its files XX-YY-LL.png" do
       assert_equal(1, Dir[File.join(output_dir, "12-09-4.png")].length)
+      assert_equal(0, Dir[File.join(output_dir, "13-10-4.png")].length)
       assert_equal(1, Dir[File.join(output_dir, "06-04-2.png")].length)
+      assert_equal(0, Dir[File.join(output_dir, "07-05-2.png")].length)
       assert_equal(1, Dir[File.join(output_dir, "03-02-1.png")].length)
+      assert_equal(0, Dir[File.join(output_dir, "04-03-1.png")].length)
     end
     
-    should "have 3x13x10 files generated" do
-      assert_equal((Dir.entries(output_dir) - ['.', '..']).size, 3 * 13 * 10)
+    should "have 13*10 + 7*5 + 4*3 files generated" do
+      assert_equal((Dir.entries(output_dir) - ['.', '..']).size, 13*10 + 7*5 + 4*3)
     end
   end
   
